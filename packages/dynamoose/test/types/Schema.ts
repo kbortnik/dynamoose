@@ -208,3 +208,8 @@ const shouldSucceedWhenUsingTimestampsSetToObjectWithTypes = new dynamoose.Schem
 		}
 	}
 });
+const shouldSucceedWhenUsingBigInt = new dynamoose.Schema({
+	"data": {
+		"type": BigInt
+	}
+});

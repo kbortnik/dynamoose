@@ -278,6 +278,7 @@ describe("Schema", () => {
 					"metadata": Object,
 					"friends": Array,
 					"picture": Buffer,
+					"largeNumber": BigInt,
 					"data": [String, Buffer],
 					"dataArray": [{"type": Array, "schema": [String]}, {"type": Array, "schema": [Buffer]}],
 					"randomArray": [{"type": Object, "schema": {"name": String}}, {"type": Array, "schema": [Buffer]}],
@@ -287,7 +288,8 @@ describe("Schema", () => {
 					"favoritePictures": {"type": Set, "schema": [Buffer]},
 					"favoriteTypes": {"type": Set, "schema": [Boolean]},
 					"favoriteObjects": {"type": Set, "schema": [Object]},
-					"favoriteFriends": {"type": Set, "schema": [Array]}
+					"favoriteFriends": {"type": Set, "schema": [Array]},
+					"favoriteLargeNumbers": {"type": Set, "schema": [BigInt]}
 				}
 			},
 			{
@@ -302,6 +304,7 @@ describe("Schema", () => {
 					"metadata": "objECT",
 					"friends": "ARRay",
 					"picture": "buffer",
+					"largeNumber": "bigInt",
 					"data": ["String", "Buffer"],
 					"dataArray": [{"type": "Array", "schema": ["String"]}, {"type": "Array", "schema": ["Buffer"]}],
 					"randomArray": [{"type": "Object", "schema": {"name": "String"}}, {"type": "Array", "schema": ["Buffer"]}]
@@ -323,6 +326,7 @@ describe("Schema", () => {
 			{"input": "metadata", "output": "M"},
 			{"input": "friends", "output": "L"},
 			{"input": "picture", "output": "B"},
+			{"input": "largeNumber", "output": "N"},
 			{"input": "data", "output": ["S", "B"]},
 			{"input": "dataArray", "output": ["L", "L"]},
 			{"input": "randomArray", "output": ["M", "L"]},
@@ -333,6 +337,7 @@ describe("Schema", () => {
 			{"input": "favoriteTypes", "output": null, "collection": 1},
 			{"input": "favoriteObjects", "output": null, "collection": 1},
 			{"input": "favoriteFriends", "output": null, "collection": 1},
+			{"input": "favoriteLargeNumbers", "output": "NS", "collection": 1},
 			{"input": "emptyItem", "output": null, "collection": 1},
 			{"input": "emptyItems", "output": null, "collection": 1}
 		];

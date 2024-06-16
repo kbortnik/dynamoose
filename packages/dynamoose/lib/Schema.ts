@@ -215,6 +215,7 @@ const attributeTypesMain: DynamoDBType[] = ((): DynamoDBType[] => {
 				}
 			})
 		}, "jsType": Date}),
+		new DynamoDBType({"name": "BigInt", "dynamodbType": "N", "set": true, "jsType": "bigint"}),
 		new DynamoDBType({"name": "Combine", "dynamodbType": stringType, "set": false, "jsType": String}),
 		new DynamoDBType({"name": "Constant", "dynamicName": (typeSettings?: AttributeDefinitionTypeSettings): string => {
 			return `constant ${typeof typeSettings.value} (${typeSettings.value})`;
@@ -271,9 +272,9 @@ const attributeTypesMain: DynamoDBType[] = ((): DynamoDBType[] => {
 })();
 const attributeTypes: (DynamoDBTypeResult | DynamoDBSetTypeResult)[] = utils.array_flatten(attributeTypesMain.filter((checkType) => !checkType.customType).map((checkType) => checkType.result()).map((a) => [a, a.set])).filter((a) => Boolean(a));
 
-type GeneralValueType = string | boolean | number | Buffer | Date;
+type GeneralValueType = string | boolean | number | Buffer | Date | BigInt;
 export type ValueType = GeneralValueType | {[key: string]: ValueType} | ValueType[];
-type AttributeType = string | StringConstructor | BooleanConstructor | NumberConstructor | typeof Buffer | DateConstructor | ObjectConstructor | ArrayConstructor | SetConstructor | symbol | Schema | ModelType<Item>;
+type AttributeType = string | StringConstructor | BooleanConstructor | NumberConstructor | typeof Buffer | DateConstructor | BigIntConstructor | ObjectConstructor | ArrayConstructor | SetConstructor | symbol | Schema | ModelType<Item>;
 
 export interface TimestampObject {
 	createdAt?: string | string[] | SchemaDefinition;
